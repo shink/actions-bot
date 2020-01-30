@@ -9,15 +9,15 @@ mail_user="shenkebug@163.com"
 mail_password="wuTAwuai10190013"
 sender="shenkebug@163.com"
 receiver="shenkebug@qq.com"
-filePath="/home/result/config.json"
+filePath="config.json"
 
-# if [ ! -f "$filePath" ];then
-# touch $filePath
-# echo "{}" > $filePath
-# echo "文件创建完成"
-# else
-# echo "文件已经存在"
-# fi
+if [ ! -f "$filePath" ];then
+touch $filePath
+echo "{}" > $filePath
+echo "文件创建完成"
+else
+echo "文件已经存在"
+fi
 
 echo pwd
 echo dirname $0
