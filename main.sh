@@ -12,20 +12,6 @@ CSDN_ID="qq_38105251"
 filePath="result.txt"
 emailPath="email.txt"
 
-if [ ! -f "$filePath" ];then
-result='{ "nick_name": "", "blog_title": "", "profile": {} }'
-touch $filePath
-echo $result > $filePath
-echo "文件创建完成"
-else
-echo "文件已经存在"
-result=""
-cat $filePath | while read line
-do
-result=$result$line
-done
-fi
-
 touch $emailPath
 
-python spider.py $CSDN_ID $filePath $emailPath $result
+python spider.py $CSDN_ID $filePath $emailPath

@@ -143,10 +143,9 @@ def saveEmail(message):
 
 if __name__ == "__main__":
 
-    CSDN_ID = sys.argv[1]
-    file_path = sys.argv[2]
-    email_path = sys.argv[3]
-    before_res = sys.argv[4]
+    # CSDN_ID = sys.argv[1]
+    # file_path = sys.argv[2]
+    # email_path = sys.argv[3]
 
     # mail_host = sys.argv[2]
     # mail_port = sys.argv[3]
@@ -156,39 +155,39 @@ if __name__ == "__main__":
     # receiver = sys.argv[7]
     # file_path = sys.argv[8]
     # email_path = sys.argv[9]
-    # before_res = sys.argv[10]
 
-    # CSDN_ID = "qq_38105251"
-    # mail_host = "smtp.163.com"
-    # mail_port = 465
-    # mail_user = "shenkebug@163.com"
-    # mail_password = "wuTAwuai10190013"
-    # sender = "shenkebug@163.com"
-    # receiver = "shenkebug@qq.com"
-    # file_path = "result.txt"
-    # email_path = "email.txt"
-    # before_res = '{"nick_name": "一路是夜幕沉沙","blog_title": "深刻的博客","profile": {"original": "9","fans": "1","like": "0","comment": "0","read": "225","point": "97","week_rank": "129285","total_rank": "464197"}}'
+    CSDN_ID = "qq_38105251"
+    mail_host = "smtp.163.com"
+    mail_port = 465
+    mail_user = "shenkebug@163.com"
+    mail_password = "wuTAwuai10190013"
+    sender = "shenkebug@163.com"
+    receiver = "shenkebug@qq.com"
+    file_path = "result.txt"
+    email_path = "email.txt"
 
     try:
-        before_res = json.loads(before_res)
+        fr = open(file_path, 'r+')
+        before_res = eval(fr.read())
+        fr.close()
+
         res = getResult(CSDN_ID)
         # 进行比对
         message = compare(before_res, res)
         print(message)
         if (message == ""):
-            # 发送邮件
-            message = "亲爱的 " + before_res["nick_name"] + "，您的访问量、排名等信息尚无变化 :("
+            message = "亲爱的 " + res["nick_name"] + "，您的访问量、排名等信息尚无变化 :("
+        else:
+            saveFile(res)
 
         saveEmail(message)
 
     except FileNotFoundError:
         print("FileNotFound")
-        saveEmail("FileNotFound")
-        # res = getResult(CSDN_ID)
-        # saveFile(res)
+        res = getResult(CSDN_ID)
+        saveFile(res)
+        saveEmail("亲爱的 " + before_res["nick_name"] + "，欢迎使用")
 
     except Exception as e:
         print(e)
-        saveEmail(e)
-        # res = getResult(CSDN_ID)
-        # saveFile(res)
+        saveEmail("出错啦！\n" + e)
