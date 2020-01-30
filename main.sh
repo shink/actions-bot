@@ -13,7 +13,11 @@ filePath="config.json"
 
 if [ ! -f "$filePath" ];then
 touch $filePath
-echo "{}" > $filePath
+echo "result = {
+            "nick_name": "",
+            "blog_title": "",
+            "profile": {}
+        }" > $filePath
 echo "文件创建完成"
 else
 echo "文件已经存在"
