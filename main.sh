@@ -3,8 +3,8 @@
 set -eux
 
 CSDN_ID="qq_38105251"
-filePath="result.txt"
-emailPath="email.txt"
+filePath="result/result.txt"
+emailPath="result/email.txt"
 
 touch $emailPath
 
