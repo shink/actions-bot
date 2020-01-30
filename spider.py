@@ -144,6 +144,8 @@ if __name__ == "__main__":
     mail_password = sys.argv[5]
     sender = sys.argv[6]
     receiver = sys.argv[7]
+    file_path = sys.argv[8]
+    # file_path = "config.json"
 
     # CSDN_ID = "qq_38105251"
     # mail_host = "smtp.163.com"
@@ -152,9 +154,6 @@ if __name__ == "__main__":
     # mail_password = "wuTAwuai10190013"
     # sender = "shenkebug@163.com"
     # receiver = "shenkebug@qq.com"
-
-    file_path = "/home/result/config.json"
-    # file_path = "config.json"
 
     try:
         config_file = open(file_path, "r", encoding="utf-8")
