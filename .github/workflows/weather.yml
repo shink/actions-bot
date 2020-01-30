@@ -1,9 +1,6 @@
 name: 'GitHub Actions Weather Email Bot'
 
 on:
-  push:
-    branches: 
-      - master
   schedule:
     - cron: '0 4,12,22 * * *'
 
