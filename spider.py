@@ -137,8 +137,8 @@ def saveFile(res):
 
 # 保存email内容
 def saveEmail(message):
-    with open(email_path, 'wb') as email:
-        email.write(message)
+    with open(email_path, 'w', encoding="utf-8") as email:
+        email.writelines(message)
 
 
 if __name__ == "__main__":
