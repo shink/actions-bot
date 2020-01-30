@@ -15,5 +15,3 @@ emailPath="email.txt"
 touch $emailPath
 
 python spider.py $CSDN_ID $filePath $emailPath
-
-ll -h
