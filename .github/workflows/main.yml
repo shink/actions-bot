@@ -25,10 +25,10 @@ jobs:
           pip install requests
       - name: 'Download file'
         uses: actions/download-artifact@v1
+        continue-on-error: true
         with:
           name: result
       - name: 'Working'
-        continue-on-error: true
         run: bash ./main.sh
       - name: 'Upload file'
         uses: actions/upload-artifact@v1
