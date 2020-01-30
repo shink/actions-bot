@@ -151,6 +151,7 @@ if __name__ == "__main__":
         before_res = json.load(config_file)
         config_file.close()
         res = getResult(CSDN_ID)
+        print(res)
         # 进行比对
         message = compare(before_res, res)
         print(message)
@@ -165,5 +166,6 @@ if __name__ == "__main__":
         saveFile(res)
 
     except Exception as e:
+        print("error")
         res = getResult(CSDN_ID)
         saveFile(res)
