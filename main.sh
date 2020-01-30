@@ -13,11 +13,7 @@ filePath="result.txt"
 emailPath="email.txt"
 
 if [ ! -f "$filePath" ];then
-result='{
-            "nick_name": "",
-            "blog_title": "",
-            "profile": {}
-        }'
+result='{ "nick_name": "", "blog_title": "", "profile": {} }'
 touch $filePath
 echo $result > $filePath
 echo "文件创建完成"
