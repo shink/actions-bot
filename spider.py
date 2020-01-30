@@ -1,3 +1,6 @@
+#!/bin/python
+#Coding="utf-8"
+
 import sys
 import requests
 from bs4 import BeautifulSoup
@@ -125,6 +128,13 @@ def sendEmail(content):
         print("Error: 无法发送邮件")
 
 
+# 保存文件
+def saveFile(res):
+    json_str = json.dumps(res, indent=4, ensure_ascii=False)
+    with open(file_path, 'w', encoding="utf-8") as json_file:
+        json_file.write(json_str)
+
+
 if __name__ == "__main__":
 
     CSDN_ID = sys.argv[1]
@@ -135,9 +145,18 @@ if __name__ == "__main__":
     sender = sys.argv[6]
     receiver = sys.argv[7]
 
+    # CSDN_ID = "qq_38105251"
+    # mail_host = "smtp.163.com"
+    # mail_port = 465
+    # mail_user = "shenkebug@163.com"
+    # mail_password = "wuTAwuai10190013"
+    # sender = "shenkebug@163.com"
+    # receiver = "shenkebug@qq.com"
+
+    file_path = "/home/result/config.json"
+    # file_path = "config.json"
+
     try:
-        # file_path = "/home/result/config.json"
-        file_path = "config.json"
         config_file = open(file_path, "r", encoding="utf-8")
         before_res = json.load(config_file)
         config_file.close()
@@ -148,13 +167,13 @@ if __name__ == "__main__":
         if (message != ""):
             # 发送邮件
             sendEmail(message)
+            saveFile(res)
 
     except FileNotFoundError:
         print("FileNotFound")
         res = getResult(CSDN_ID)
-        json_str = json.dumps(res, indent=4, ensure_ascii=False)
-        with open(file_path, 'w', encoding="utf-8") as json_file:
-            json_file.write(json_str)
+        saveFile(res)
 
     except Exception as e:
-        sendEmail(e)
+        res = getResult(CSDN_ID)
+        saveFile(res)
