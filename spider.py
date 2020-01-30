@@ -84,7 +84,7 @@ def getResult(CSDN_ID):
 def compare(before_res, res):
     message = ""
     if (before_res["nick_name"] == res["nick_name"] and before_res["blog_title"] == res["blog_title"]):
-        call = "亲爱的 " + before_res["nick_name"] + "，"
+        call = "亲爱的 " + res["nick_name"] + "，"
         # 比较访问量、积分和排名
         if (before_res["profile"]["read"] != res["profile"]["read"]):
             before = int(before_res["profile"]["read"])
@@ -186,7 +186,7 @@ if __name__ == "__main__":
         print("FileNotFound")
         res = getResult(CSDN_ID)
         saveFile(res)
-        saveEmail("亲爱的 " + before_res["nick_name"] + "，欢迎使用")
+        saveEmail("亲爱的 " + res["nick_name"] + "，欢迎使用")
 
     except Exception as e:
         print(e)
