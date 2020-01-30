@@ -12,7 +12,6 @@ from email.header import Header
 
 # 爬取访问量、排名等信息
 def getResult(CSDN_ID):
-
     url = "https://blog.csdn.net/" + CSDN_ID
     headers = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36",
@@ -61,63 +60,45 @@ def getResult(CSDN_ID):
         return result
 
 
-# 比对结果
-def compare(before_res, res):
+# 生成信息
+def formatMessage(result):
     message = ""
-    if (before_res["nick_name"] == res["nick_name"] and before_res["blog_title"] == res["blog_title"]):
-        call = "亲爱的 " + res["nick_name"] + "，"
-        # 比较访问量、积分和排名
-        if (before_res["profile"]["read"] != res["profile"]["read"]):
-            before = int(before_res["profile"]["read"])
-            after = int(res["profile"]["read"])
-            message += call + "您的访问量增加了" + str(after - before) + "\n"
+    call = "亲爱的 " + result["nick_name"] + "，\n\n"
+    profile = result["profile"]
+    original = "原创文章数目： " + profile["original"] + "\n"
+    fans = "粉丝： " + profile["fans"] + "\n"
+    like = "获赞： " + profile["like"] + "\n"
+    comment = "评论： " + profile["comment"] + "\n"
+    read = "访问量： " + profile["read"] + "\n"
+    point = "积分： " + profile["point"] + "\n"
+    week_rank = "周排名： " + profile["week_rank"] + "\n"
+    total_rank = "总排名： " + profile["total_rank"]
 
-            if (before_res["profile"]["point"] != res["profile"]["point"]):
-                before = int(before_res["profile"]["point"])
-                after = int(res["profile"]["point"])
-                message += call + "您的积分增加了" + str(after - before) + "分\n"
-
-            if (before_res["profile"]["week_rank"] != res["profile"]["week_rank"]):
-                before = int(before_res["profile"]["week_rank"])
-                after = int(res["profile"]["week_rank"])
-                message += call + "您的周排名上升了" + str(after - before) + "名\n"
-
-        if (before_res["profile"]["total_rank"] != res["profile"]["total_rank"]):
-            before = int(before_res["profile"]["total_rank"])
-            after = int(res["profile"]["total_rank"])
-            message += call + "您的总排名上升了" + str(after - before) + "名\n"
-
+    message += call + original + fans + like + comment + read + point + week_rank + total_rank
     return message
 
 
 # 发送邮件
-# def sendEmail(content):
-#     message = MIMEText(content, 'plain', 'utf-8')
-#     message['From'] = "GitHub Actions<" + sender + ">"
-#     message['To'] = "<" + receiver + ">"
+def sendEmail(content):
+    message = MIMEText(content, 'plain', 'utf-8')
+    message['From'] = "GitHub Actions<" + sender + ">"
+    message['To'] = "<" + receiver + ">"
 
-#     subject = "CSDN Report"
-#     message['Subject'] = Header(subject, 'utf-8')
+    subject = "CSDN Report"
+    message['Subject'] = Header(subject, 'utf-8')
 
-#     try:
-#         smtpObj = smtplib.SMTP_SSL(mail_host, mail_port)
-#         smtpObj.login(mail_user, mail_password)
-#         smtpObj.sendmail(sender, receiver, message.as_string())
-#         print("邮件发送成功")
+    try:
+        smtpObj = smtplib.SMTP_SSL(mail_host, mail_port)
+        smtpObj.login(mail_user, mail_password)
+        smtpObj.sendmail(sender, receiver, message.as_string())
+        print("邮件发送成功")
 
-#     except smtplib.SMTPException:
-#         print("Error: 无法发送邮件")
-
-
-# 保存爬取内容
-def saveFile(res):
-    json_str = json.dumps(res, indent=4, ensure_ascii=False)
-    with open(file_path, 'w', encoding="utf-8") as json_file:
-        json_file.write(json_str)
+    except smtplib.SMTPException:
+        print("Error: 无法发送邮件")
 
 
 # 保存email内容
-def saveEmail(message):
+def saveEmail(email_path, message):
     with open(email_path, 'w', encoding="utf-8") as email:
         email.writelines(message)
 
@@ -125,31 +106,8 @@ def saveEmail(message):
 if __name__ == "__main__":
 
     CSDN_ID = sys.argv[1]
-    file_path = sys.argv[2]
-    email_path = sys.argv[3]
 
-    try:
-        fr = open(file_path, 'r+')
-        before_res = eval(fr.read())
-        fr.close()
-
-        res = getResult(CSDN_ID)
-        # 进行比对
-        message = compare(before_res, res)
-        print(message)
-        if (message == ""):
-            message = "亲爱的 " + res["nick_name"] + "，您的访问量、排名等信息尚无变化 :("
-        else:
-            saveFile(res)
-
-        saveEmail(message)
-
-    except FileNotFoundError:
-        print("FileNotFound")
-        res = getResult(CSDN_ID)
-        saveFile(res)
-        saveEmail("亲爱的 " + res["nick_name"] + "，欢迎使用")
-
-    except Exception as e:
-        print(e)
-        saveEmail("出错啦！\n" + e)
+    res = getResult(CSDN_ID)
+    message = formatMessage(res)
+    email_path = "email.txt"
+    saveEmail(email_path, message)

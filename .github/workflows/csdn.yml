@@ -8,7 +8,7 @@ on:
     - cron: '*/5 * * * *'
 
 jobs:
-  bot:
+  csdn-emailbot:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout codes'
@@ -23,18 +23,8 @@ jobs:
         run: |
           pip install beautifulsoup4
           pip install requests
-      - name: 'Download file'
-        uses: actions/download-artifact@v1
-        continue-on-error: true
-        with:
-          name: result
       - name: 'Working'
         run: bash ./csdn-emailbot/main.sh
-      - name: 'Upload file'
-        uses: actions/upload-artifact@v1
-        with:
-          name: result
-          path: result/result.txt
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
         with:
@@ -43,7 +33,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: CSDN Report
-          body: file://result/email.txt
+          body: file://email.txt
           to: shenkebug@qq.com
           from: GitHub Actions
           content_type: text/plain
