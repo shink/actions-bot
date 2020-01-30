@@ -19,6 +19,7 @@ filePath="/home/result/config.json"
 # echo "文件已经存在"
 # fi
 
-pwd
+echo pwd
+echo dirname $0
 
 python spider.py $CSDN_ID $mail_host $mail_port $mail_user $mail_password $sender $receiver $filePath
