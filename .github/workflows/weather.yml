@@ -1,17 +1,20 @@
 name: 'GitHub Actions Weather Email Bot'
 
 on:
+  push:
+    branches: 
+      - master
   schedule:
     - cron: '0 4,12,22 * * *'
 
 jobs:
-  bot:
+  bot_job:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout codes'
         uses: actions/checkout@v1
       - name: 'Get Result'
-        run: bash ./weather.sh
+        run: bash ./weather-emailbot/weather.sh
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
         with:
