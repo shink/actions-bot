@@ -8,7 +8,7 @@ on:
     - cron: '0 4,12,22 * * *'
 
 jobs:
-  bot_job:
+  bot:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout codes'

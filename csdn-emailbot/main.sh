@@ -9,4 +9,4 @@ emailPath="result/email.txt"
 mkdir result
 touch $emailPath
 
-python spider.py $CSDN_ID $filePath $emailPath
+python csdn-emailbot/spider.py $CSDN_ID $filePath $emailPath
