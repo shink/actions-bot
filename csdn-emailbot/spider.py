@@ -63,7 +63,7 @@ def getResult(CSDN_ID):
 # 生成信息
 def formatMessage(result):
     message = ""
-    call = "亲爱的 " + result["nick_name"] + "，您的 CSDN 信息到啦\n\n"
+    call = "亲爱的 " + result["nick_name"] + "，您的 CSDN profile 到啦\n\n"
     profile = result["profile"]
     original = "原创文章数目： " + profile["original"] + "\n"
     fans = "粉丝： " + profile["fans"] + "\n"
