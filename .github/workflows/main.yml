@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: result
-          path: /result/result.txt
+          path: result.txt
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
         with:
@@ -43,7 +43,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: CSDN Report
-          body: file://result/email.txt
+          body: file://email.txt
           to: shenkebug@qq.com
           from: GitHub Actions
           content_type: text/plain
