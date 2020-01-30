@@ -12,7 +12,6 @@ from email.header import Header
 
 # 爬取访问量、排名等信息
 def getResult(CSDN_ID):
-    # etree = lxml.html.etree
 
     url = "https://blog.csdn.net/" + CSDN_ID
     headers = {
@@ -59,24 +58,6 @@ def getResult(CSDN_ID):
         profile["total_rank"] = total_rank
         result["profile"] = profile
 
-        # 爬取每条文章的信息
-        # articles = []
-        # article_list = soup.find("div", attrs={"class": "article-list"}).contents
-        # for article in article_list:
-        #     if (article != "\n"):
-        #         articles.append(article)
-        #
-        # print(len(articles))
-        #
-        # for article in articles:
-        #     string = article.find("a").get_text().strip()
-        #     type = re.match(r'[\u4E00-\u9FA5]{2}', string).group()
-        #     title = re.sub(r'^[\u4E00-\u9FA5]{2}', "（" + type + "）", string).replace(" ", "")
-        #
-        #     date = article.select(".date")[0].get_text().strip()
-        #     info = article.select(".num")
-        #     read_num = info[0].get_text().strip()
-        #     comment_num = info[1].get_text().strip()
         return result
 
 
@@ -110,22 +91,22 @@ def compare(before_res, res):
 
 
 # 发送邮件
-def sendEmail(content):
-    message = MIMEText(content, 'plain', 'utf-8')
-    message['From'] = "GitHub Actions<" + sender + ">"
-    message['To'] = "<" + receiver + ">"
+# def sendEmail(content):
+#     message = MIMEText(content, 'plain', 'utf-8')
+#     message['From'] = "GitHub Actions<" + sender + ">"
+#     message['To'] = "<" + receiver + ">"
 
-    subject = "CSDN Report"
-    message['Subject'] = Header(subject, 'utf-8')
+#     subject = "CSDN Report"
+#     message['Subject'] = Header(subject, 'utf-8')
 
-    try:
-        smtpObj = smtplib.SMTP_SSL(mail_host, mail_port)
-        smtpObj.login(mail_user, mail_password)
-        smtpObj.sendmail(sender, receiver, message.as_string())
-        print("邮件发送成功")
+#     try:
+#         smtpObj = smtplib.SMTP_SSL(mail_host, mail_port)
+#         smtpObj.login(mail_user, mail_password)
+#         smtpObj.sendmail(sender, receiver, message.as_string())
+#         print("邮件发送成功")
 
-    except smtplib.SMTPException:
-        print("Error: 无法发送邮件")
+#     except smtplib.SMTPException:
+#         print("Error: 无法发送邮件")
 
 
 # 保存爬取内容
@@ -143,28 +124,9 @@ def saveEmail(message):
 
 if __name__ == "__main__":
 
-    # CSDN_ID = sys.argv[1]
-    # file_path = sys.argv[2]
-    # email_path = sys.argv[3]
-
-    # mail_host = sys.argv[2]
-    # mail_port = sys.argv[3]
-    # mail_user = sys.argv[4]
-    # mail_password = sys.argv[5]
-    # sender = sys.argv[6]
-    # receiver = sys.argv[7]
-    # file_path = sys.argv[8]
-    # email_path = sys.argv[9]
-
-    CSDN_ID = "qq_38105251"
-    mail_host = "smtp.163.com"
-    mail_port = 465
-    mail_user = "shenkebug@163.com"
-    mail_password = "wuTAwuai10190013"
-    sender = "shenkebug@163.com"
-    receiver = "shenkebug@qq.com"
-    file_path = "result.txt"
-    email_path = "email.txt"
+    CSDN_ID = sys.argv[1]
+    file_path = sys.argv[2]
+    email_path = sys.argv[3]
 
     try:
         fr = open(file_path, 'r+')
