@@ -1,0 +1,27 @@
+name: 'GitHub Actions CSDN Email Bot'
+
+on:
+  push:
+    branches: 
+      - master
+  schedule:
+    - cron: '0 4,12,22 * * *'
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout codes'
+        uses: actions/checkout@v1
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: 'Install dependencies'
+        run: python -m pip install --upgrade pip
+      - name: 'Install lib'
+        run: |
+          pip install beautifulsoup4
+          pip install requests
+      - name: 'Get Result'
+        run: bash ./main.sh
