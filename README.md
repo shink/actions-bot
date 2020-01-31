@@ -1,4 +1,4 @@
-# actions-spider
+# actions-bot——several robots based on GitHub Actions 🤖
 
 目前包含两个 email 机器人，都是基于 GitHub Actions 实现的
 
@@ -32,4 +32,8 @@
 
 其中，`MAIL_USERNAME` 是你开通 SMTP 服务的邮箱，`MAIL_PASSWORD` 是你设置的 SMTP 服务的密码（**不是邮箱的登录密码**）
 
-### 4. enjoy it
+### 4. 创建 Workflow
+
+进入仓库的「Actions」，点击「New workflow」、「Set up a workflow yourself」，然后复制 `.github/workflows/` 文件夹下的 `yml` 文件代码，粘贴并 commit，完成 👌
+
+### 5. enjoy it
