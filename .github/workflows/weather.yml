@@ -11,7 +11,7 @@ jobs:
       - name: 'Checkout codes'
         uses: actions/checkout@v1
       - name: 'Working'
-        run: bash ./weather-emailbot/weather.sh
+        run: bash ./weather-emailbot/main.sh
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
         with:
