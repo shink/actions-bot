@@ -3,6 +3,6 @@
 set -eux
 
 # 修改为你的 CSDN_ID
-CSDN_ID="qq_38105251"
+CSDN_ID="sculpta"
 
 python csdn-emailbot/spider.py $CSDN_ID
