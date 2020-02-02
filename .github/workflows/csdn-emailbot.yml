@@ -17,12 +17,10 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
-      - name: 'Install dependencies'
-        run: python -m pip install --upgrade pip
-      - name: 'Install lib'
-        run: |
-          pip install beautifulsoup4
-          pip install requests
+      # - name: 'Install dependencies'
+      #   run: python -m pip install --upgrade pip
+      - name: 'Install requirements'
+        run: pip install -r ./csdn-emailbot/requirements.txt
       - name: 'Working'
         run: bash ./csdn-emailbot/main.sh
       - name: 'Send mail'

@@ -47,7 +47,8 @@ def access_page(url):
 
 # 爬取访问量、排名等信息
 # flag: 是否需要爬取该页面下的文章，默认:需要
-def access_article(text, flag=True):
+# interval：爬取文章的间隔，默认:20分钟
+def access_article(text, flag=True, interval=20):
     soup = BeautifulSoup(text, "html.parser")
 
     if (flag):
@@ -68,9 +69,10 @@ def access_article(text, flag=True):
                 article_url = article.a.get("href")
                 print(article_title, article_url)
 
-                # 每十分钟访问一篇文章
+                # 默认每20分钟访问一篇文章
                 access_page(article_url)
-                time.sleep(5)
+                interval = interval * 60
+                time.sleep(interval)
 
             return 1
     else:
@@ -89,6 +91,8 @@ def saveEmail(email_path, message):
 if __name__ == "__main__":
 
     CSDN_ID = sys.argv[1]
+    interval = sys.argv[2]
+
     email_path = "email.txt"
     page_num = 1
     url_prefix = "https://blog.csdn.net/" + CSDN_ID + "/article/list/"
@@ -98,7 +102,7 @@ if __name__ == "__main__":
     try:
         while (1):
             print("第" + str(page_num) + "页：")
-            if (access_article(access_page(url))):
+            if (access_article(access_page(url), interval=interval)):
                 page_num += 1
                 url = url_prefix + str(page_num)
             else:

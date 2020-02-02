@@ -16,11 +16,11 @@
 
 ### 2. 修改
 
-  - 对于 weather-emailbot，需修改 `weather.sh` 中的城市信息（具体可参考 [chubin/wttr.in](https://github.com/chubin/wttr.in)）以及将 `weather.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址
+  - 对于 weather-emailbot，需修改 `main.sh` 中的城市信息（具体可参考 [chubin/wttr.in](https://github.com/chubin/wttr.in)）以及将 `weather.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址
   
-  - 对于 csdn-emailbot，需修改 `main.sh` 中的 `CSDN_ID` 为你的 CSDN_ID，以及将 `weather.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址，另外还可以自定义更多玩法，可参考 [我的博客](https://blog.csdn.net/qq_38105251/article/details/104119623)
+  - 对于 csdn-emailbot，需修改 `main.sh` 中的 `CSDN_ID` 为你的 CSDN_ID，以及将 `csdn-emailbot.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址，另外还可以自定义更多玩法，可参考 [我的博客](https://blog.csdn.net/qq_38105251/article/details/104119623)
 
-  - 对于 csdn-spider，仅需修改 `main.sh` 中的 `CSDN_ID` 为你的 CSDN_ID 即可
+  - 对于 csdn-spider，除了需要修改 `CSDN_ID` 和接收邮件地址外，还需要修改 `main.sh` 中的 `interval`，该字段意思是访问文章的间隔。**注意**：GitHub Actions 限制每次任务最多运行 6 小时
 
 ### 3. 配置 SMTP 邮件发送服务
 
