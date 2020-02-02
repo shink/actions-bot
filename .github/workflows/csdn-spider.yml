@@ -1,14 +1,11 @@
 name: 'GitHub Actions CSDN Spider Bot'
 
 on:
-  push:
-    branches: 
-      - master
   schedule:
-    - cron: '0 4,15 * * *'
+    - cron: '0 16 * * *'
 
 jobs:
-  csdn-emailbot:
+  csdn-spider:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
