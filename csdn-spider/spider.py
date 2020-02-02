@@ -34,8 +34,7 @@ def access_page(url):
         "Mozilla/4.0 (compatible; MSIE 6.0; ) Opera/UCWEB7.0.2.37/28/999"
     ]
 
-    index = np.random.choice(len(user_agent_list))
-    user_agent = user_agent_list[index]
+    user_agent = np.random.choice(user_agent_list, 1)[0]
     headers = {"user-agent": user_agent}
 
     response = requests.get(url, headers=headers)
@@ -47,8 +46,7 @@ def access_page(url):
 
 # 爬取访问量、排名等信息
 # flag: 是否需要爬取该页面下的文章，默认:需要
-# interval：爬取文章的间隔，默认:20分钟
-def access_article(text, flag=True, interval=20):
+def access_article(text, flag=True):
     soup = BeautifulSoup(text, "html.parser")
 
     if (flag):
@@ -59,20 +57,17 @@ def access_article(text, flag=True, interval=20):
         else:
             # 随机爬取文章
             length = len(articles)
-            index_array = np.arange(length)
-            for i in range(length):
-                index = np.random.choice(index_array, 1)[0]
-                index_array = np.delete(index_array, index)
-
+            index_array = np.random.permutation(np.arange(length))
+            for index in index_array:
                 article = articles[index]
                 article_title = article.a.get_text().strip()
                 article_url = article.a.get("href")
                 print(article_title, article_url)
 
-                # 默认每20分钟访问一篇文章
+                # 随机生成一个间隔时间（范围：15~30分钟）
+                interval = np.random.randint(15, 30, 1)
                 access_page(article_url)
-                interval = interval * 60
-                time.sleep(interval)
+                time.sleep(interval * 60)
 
             return 1
     else:
@@ -91,7 +86,8 @@ def saveEmail(email_path, message):
 if __name__ == "__main__":
 
     CSDN_ID = sys.argv[1]
-    interval = sys.argv[2]
+
+    # CSDN_ID = "sculpta"
 
     email_path = "email.txt"
     page_num = 1
@@ -102,7 +98,7 @@ if __name__ == "__main__":
     try:
         while (1):
             print("第" + str(page_num) + "页：")
-            if (access_article(access_page(url), interval=interval)):
+            if (access_article(access_page(url))):
                 page_num += 1
                 url = url_prefix + str(page_num)
             else:

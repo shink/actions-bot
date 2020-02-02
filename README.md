@@ -4,23 +4,23 @@
 
 - weather-emailbot：参照阮一峰老师的一篇教程：[GitHub Actions 教程：定时发送天气邮件](http://www.ruanyifeng.com/blog/2019/12/github_actions.html)
 
-- csdn-emailbot：爬取 CSDN profile 信息，在 runner 服务器部署爬虫环境，并定时发送邮件，可参考 [我的博客](https://blog.csdn.net/qq_38105251/article/details/104119623)
+- csdn-emailbot：爬取 CSDN profile 信息，在 runner 服务器部署爬虫环境，并定时发送邮件，可参考 [我的博客](https://blog.csdn.net/sculpta/article/details/104142607)
 
-- csdn-spider：刷 CSDN 访问量，随机使用 24 种 user-agent，乱序爬取文章，任务完成后发送任务反馈（嘘~ 🤫）
+- csdn-spider：刷 CSDN 访问量，随机使用 24 种 user-agent，乱序、随机时间间隔爬取文章，任务完成后发送任务反馈邮件（嘘~ 🤫）
 
 ## 使用方法 ʕ •ᴥ•ʔ
 
 ### 1. 首先点击右上角 🌟Star , 🔱Fork（推荐）或 clone
 
-`git clone https://github.com/profoundly/actions-bot.git`
+`git clone https://github.com/sculpta/actions-bot.git`
 
 ### 2. 修改
 
   - 对于 weather-emailbot，需修改 `main.sh` 中的城市信息（具体可参考 [chubin/wttr.in](https://github.com/chubin/wttr.in)）以及将 `weather.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址
   
-  - 对于 csdn-emailbot，需修改 `main.sh` 中的 `CSDN_ID` 为你的 CSDN_ID，以及将 `csdn-emailbot.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址，另外还可以自定义更多玩法，可参考 [我的博客](https://blog.csdn.net/qq_38105251/article/details/104119623)
+  - 对于 csdn-emailbot，需修改 `main.sh` 中的 `CSDN_ID` 为你的 CSDN_ID，以及将 `csdn-emailbot.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址，另外还可以自定义更多玩法，可参考 [我的博客](https://blog.csdn.net/sculpta/article/details/104142607)
 
-  - 对于 csdn-spider，除了需要修改 `CSDN_ID` 和接收邮件地址外，还需要修改 `main.sh` 中的 `interval`，该字段意思是访问文章的间隔。**注意**：GitHub Actions 限制每次任务最多运行 6 小时
+  - 对于 csdn-spider，除了需要修改 `CSDN_ID` 和接收邮件地址外，由于 **GitHub Actions 限制每次任务最多运行 6 小时**，所以建议根据需求修改下 `spider.py` 中的源码（默认是 15~30 分钟访问一篇文章）
 
 ### 3. 配置 SMTP 邮件发送服务
 
@@ -40,4 +40,4 @@
 
 进入仓库的「Actions」，点击「New workflow」、「Set up a workflow yourself」，然后复制 `.github/workflows/` 文件夹下的 `yml` 文件代码，粘贴并 commit，完成 👌
 
-### 5. enjoy it
+### 5. Just Enjoy It
