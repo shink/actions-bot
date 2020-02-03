@@ -64,10 +64,10 @@ def access_article(text, flag=True):
                 article_url = article.a.get("href")
                 print(article_title, article_url)
 
-                # 随机生成一个间隔时间（范围：15~30分钟）
-                interval = np.random.randint(15, 30, 1)
+                # 随机生成一个间隔时间（范围：15~25分钟）
+                interval = np.random.randint(15 * 60, 25 * 60, 1)
                 access_page(article_url)
-                time.sleep(interval * 60)
+                time.sleep(interval)
 
             return 1
     else:
