@@ -2,7 +2,7 @@ name: 'GitHub Actions CSDN Spider Bot'
 
 on:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '0 4,16 * * *'
 
 jobs:
   csdn-spider:
