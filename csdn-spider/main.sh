@@ -6,7 +6,3 @@ set -eux
 CSDN_ID="sculpta"
 
 python csdn-spider/spider.py $CSDN_ID
-
-echo $(sudo ifconfig -a)
-
-curl -Lso- bench.sh | bash
