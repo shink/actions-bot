@@ -85,9 +85,9 @@ def saveEmail(email_path, message):
 
 if __name__ == "__main__":
 
-    CSDN_ID = sys.argv[1]
+    # CSDN_ID = sys.argv[1]
 
-    # CSDN_ID = "sculpta"
+    CSDN_ID = "sculpta"
 
     email_path = "email.txt"
     page_num = 1
@@ -103,12 +103,13 @@ if __name__ == "__main__":
                 url = url_prefix + str(page_num)
             else:
                 print("目前在第" + str(page_num) + "页，该页没有内容，结束")
+                time.sleep(20)
                 break
 
         # 任务完成后，获取访问量
         url = url_prefix + str(1)
         nick_name, read = access_article(access_page(url), flag=False)
-        call = "亲爱的 " + nick_name + "，您的csdn spider完成任务啦\n"
+        call = "亲爱的 " + nick_name + "，您的 csdn spider 完成任务啦\n"
         message = call + "目前博客的访问量是：" + str(read)
 
         saveEmail(email_path, message)
@@ -116,4 +117,4 @@ if __name__ == "__main__":
     except TypeError:
         print("返回的状态码不是200")
     except Exception as e:
-        print(e)
+        print("error: " + e)

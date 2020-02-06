@@ -29,6 +29,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: CSDN Report
           body: file://email.txt
-          to: shenkebug@qq.com
+          to: ${{ secrets.RECEIVER }}
           from: GitHub Actions
           content_type: text/plain
