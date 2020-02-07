@@ -2,7 +2,7 @@ name: 'GitHub Actions Weather Email Bot'
 
 on:
   schedule:
-    - cron: '0 4,12,22 * * *'
+    - cron: '0 23 * * *'
 
 jobs:
   weather-emailbot:
@@ -12,15 +12,15 @@ jobs:
         uses: actions/checkout@v1
       - name: 'Working'
         run: bash ./weather-emailbot/main.sh
-      # - name: 'Send mail'
-      #   uses: dawidd6/action-send-mail@master
-      #   with:
-      #     server_address: smtp.163.com
-      #     server_port: 465
-      #     username: ${{ secrets.MAIL_USERNAME }}
-      #     password: ${{ secrets.MAIL_PASSWORD }}
-      #     subject: Xi'an Weather Report
-      #     body: file://result.html
-      #     to: ${{ secrets.RECEIVER }}
-      #     from: GitHub Actions
-      #     content_type: text/html
+      - name: 'Send mail'
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.163.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Xi'an Weather Report
+          body: file://result.html
+          to: ${{ secrets.RECEIVER }}
+          from: GitHub Actions
+          content_type: text/html

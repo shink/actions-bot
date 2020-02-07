@@ -84,9 +84,7 @@ def saveEmail(email_path, message):
 
 if __name__ == "__main__":
 
-    # CSDN_ID = sys.argv[1]
-
-    CSDN_ID = "sculpta"
+    CSDN_ID = sys.argv[1]
 
     email_path = "email.txt"
     page_num = 1
