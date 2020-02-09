@@ -22,6 +22,7 @@ jobs:
         run: bash ./csdn-spider/main.sh
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
+        continue-on-error: true
         with:
           server_address: smtp.163.com
           server_port: 465

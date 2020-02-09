@@ -114,4 +114,4 @@ if __name__ == "__main__":
     except TypeError:
         print("返回的状态码不是200")
     except Exception as e:
-        print("error: " + e)
+        print("error: " + str(e))
