@@ -6,7 +6,7 @@
 
 - csdn-emailbot：爬取 CSDN profile 信息，在 runner 服务器部署爬虫环境，并定时发送邮件，可参考 [我的博客](https://blog.csdn.net/sculpta/article/details/104142607)
 
-- csdn-spider：刷 CSDN 访问量，随机使用 24 种 user-agent，乱序、随机时间间隔爬取文章，任务完成后发送任务反馈邮件（嘘~ 🤫）
+- csdn-spider：刷 CSDN 访问量，随机使用 45 种 user-agent，乱序、随机时间间隔爬取文章，任务完成后发送任务反馈邮件（嘘~ 🤫）
 
 ## 使用方法 ʕ •ᴥ•ʔ
 
