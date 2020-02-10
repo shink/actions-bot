@@ -1,5 +1,12 @@
 # actions-bot——several robots based on GitHub Actions 🤖
 
+<p align="center">
+    <img src="https://img.shields.io/github/license/sculpta/actions-bot.svg"/>
+    <img src="https://img.shields.io/github/repo-size/sculpta/actions-bot.svg"/>
+    <img src="https://img.shields.io/github/last-commit/sculpta/actions-bot.svg"/>
+    <img src="https://img.shields.io/badge/language-python-yellow.svg">
+</p>
+
 目前包含三个 email 机器人，都是基于 GitHub Actions 实现的
 
 - weather-emailbot：参照阮一峰老师的一篇教程：[GitHub Actions 教程：定时发送天气邮件](http://www.ruanyifeng.com/blog/2019/12/github_actions.html)
