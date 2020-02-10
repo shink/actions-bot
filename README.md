@@ -4,7 +4,7 @@
     <img src="https://img.shields.io/github/license/sculpta/actions-bot.svg"/>
     <img src="https://img.shields.io/github/repo-size/sculpta/actions-bot.svg"/>
     <img src="https://img.shields.io/github/last-commit/sculpta/actions-bot.svg"/>
-    <img src="https://img.shields.io/badge/language-python-yellow.svg">
+    <img src="https://img.shields.io/badge/language-python-blue.svg">
 </p>
 
 目前包含三个 email 机器人，都是基于 GitHub Actions 实现的
@@ -48,3 +48,7 @@
 进入仓库的「Actions」，点击「New workflow」、「Set up a workflow yourself」，然后复制 `.github/workflows/` 文件夹下的 `yml` 文件代码，粘贴并 commit，完成 👌
 
 ### 5. Just Enjoy It
+
+## License
+
+[Apache License 2.0](LICENSE)
