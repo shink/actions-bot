@@ -1,7 +1,3 @@
-#!/bin/python
-#Coding="utf-8"
-
-
 import sys
 import requests
 from bs4 import BeautifulSoup
@@ -76,7 +72,7 @@ def access_profile(text):
     return nick_name, read
 
 
-# 爬取该页面下的文章
+# 爬取该页面下的所有文章
 def access_article(text):
     global article_sum
 
@@ -94,6 +90,7 @@ def access_article(text):
             article = articles[index]
             article_title = article.a.get_text().strip()
             article_url = article.a.get("href")
+            print(article_title, article_url)
 
             # 随机生成一个间隔时间（范围：15~25分钟）
             interval = np.random.randint(15 * 60, 25 * 60, 1)
@@ -121,16 +118,33 @@ if __name__ == "__main__":
 
     article_sum = 0
 
+    articles_url = [
+        'https://blog.csdn.net/sculpta/article/details/104425895',
+        'https://blog.csdn.net/sculpta/article/details/104425431',
+        'https://blog.csdn.net/sculpta/article/details/104418580',
+        'https://blog.csdn.net/sculpta/article/details/104142607',
+        'https://blog.csdn.net/sculpta/article/details/104142531',
+        'https://blog.csdn.net/sculpta/article/details/104142424',
+        'https://blog.csdn.net/sculpta/article/details/104142503',
+    ]
+
     try:
         while (1):
-            print("第" + str(page_num) + "页：")
-            if (access_article(access_page(url))):
-                page_num += 1
-                url = url_prefix + str(page_num)
-            else:
-                print("目前在第" + str(page_num) + "页，该页没有内容，结束")
-                time.sleep(20)
-                break
+            # print("第" + str(page_num) + "页：")
+            # if (access_article(access_page(url))):
+            #     page_num += 1
+            #     url = url_prefix + str(page_num)
+            # else:
+            #     print("目前在第" + str(page_num) + "页，该页没有内容，结束")
+            #     time.sleep(20)
+            #     break
+
+            # 爬取特定文章，每 4~6分钟一篇
+            article_url = np.random.choice(articles_url, 1)[0]
+            interval = np.random.randint(4 * 60, 6 * 60, 1)
+            access_page(article_url)
+            article_sum += 1
+            time.sleep(interval)
 
         # 任务完成后，获取访问量
         url = url_prefix + str(1)
