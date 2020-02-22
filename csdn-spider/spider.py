@@ -126,6 +126,7 @@ if __name__ == "__main__":
         'https://blog.csdn.net/sculpta/article/details/104142531',
         'https://blog.csdn.net/sculpta/article/details/104142424',
         'https://blog.csdn.net/sculpta/article/details/104142503',
+        'https://blog.csdn.net/sculpta/article/details/104448310'
     ]
 
     try:
