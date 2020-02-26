@@ -126,7 +126,8 @@ if __name__ == "__main__":
         'https://blog.csdn.net/sculpta/article/details/104142531',
         'https://blog.csdn.net/sculpta/article/details/104142424',
         'https://blog.csdn.net/sculpta/article/details/104142503',
-        'https://blog.csdn.net/sculpta/article/details/104448310'
+        'https://blog.csdn.net/sculpta/article/details/104448310',
+        'https://blog.csdn.net/sculpta/article/details/104517400'
     ]
 
     try:
@@ -140,9 +141,9 @@ if __name__ == "__main__":
             #     time.sleep(20)
             #     break
 
-            # 爬取特定文章，每 4~6分钟一篇
+            # 爬取特定文章，每 3~5分钟一篇
             article_url = np.random.choice(articles_url, 1)[0]
-            interval = np.random.randint(4 * 60, 6 * 60, 1)
+            interval = np.random.randint(3 * 60, 5 * 60, 1)
             access_page(article_url)
             article_sum += 1
             time.sleep(interval)
