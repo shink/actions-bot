@@ -103,8 +103,8 @@ def access_article(text):
 
 # 保存email内容
 def saveEmail(email_path, message):
-    with open(email_path, 'w', encoding="utf-8") as email:
-        email.writelines(message)
+    with open(email_path, 'w', encoding="utf-8") as f:
+        f.writelines(message)
 
 
 if __name__ == "__main__":
@@ -118,6 +118,7 @@ if __name__ == "__main__":
 
     article_sum = 0
 
+    # 特定文章
     articles_url = [
         'https://blog.csdn.net/sculpta/article/details/104425895',
         'https://blog.csdn.net/sculpta/article/details/104425431',
@@ -132,21 +133,21 @@ if __name__ == "__main__":
 
     try:
         while (1):
-            # print("第" + str(page_num) + "页：")
-            # if (access_article(access_page(url))):
-            #     page_num += 1
-            #     url = url_prefix + str(page_num)
-            # else:
-            #     print("目前在第" + str(page_num) + "页，该页没有内容，结束")
-            #     time.sleep(20)
-            #     break
+            print("第" + str(page_num) + "页：")
+            if (access_article(access_page(url))):
+                page_num += 1
+                url = url_prefix + str(page_num)
+            else:
+                print("目前在第" + str(page_num) + "页，该页没有内容，结束")
+                time.sleep(20)
+                break
 
             # 爬取特定文章，每 3~5分钟一篇
-            article_url = np.random.choice(articles_url, 1)[0]
-            interval = np.random.randint(3 * 60, 5 * 60, 1)
-            access_page(article_url)
-            article_sum += 1
-            time.sleep(interval)
+            # article_url = np.random.choice(articles_url, 1)[0]
+            # interval = np.random.randint(3 * 60, 5 * 60, 1)
+            # access_page(article_url)
+            # article_sum += 1
+            # time.sleep(interval)
 
         # 任务完成后，获取访问量
         url = url_prefix + str(1)
