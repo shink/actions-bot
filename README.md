@@ -1,33 +1,33 @@
-# several robots based on GitHub Actions 🤖
+# Several robots based on GitHub Actions 🤖
 
 <p align="center">
-    <img src="https://img.shields.io/github/license/tsundcn/actions-bot.svg"/>
-    <img src="https://img.shields.io/github/repo-size/tsundcn/actions-bot.svg"/>
-    <img src="https://img.shields.io/github/last-commit/tsundcn/actions-bot.svg"/>
+    <img src="https://img.shields.io/github/license/shink/actions-bot.svg"/>
+    <img src="https://img.shields.io/github/repo-size/shink/actions-bot.svg"/>
+    <img src="https://img.shields.io/github/last-commit/shink/actions-bot.svg"/>
     <img src="https://img.shields.io/badge/language-python-blue.svg">
 </p>
 
-目前包含三个 email 机器人，都是基于 GitHub Actions 实现的
+目前包含两个 email 机器人，都是基于 GitHub Actions 实现的
 
 - weather-emailbot：定时发送天气邮件，参照了阮一峰老师的一篇教程：[GitHub Actions 教程：定时发送天气邮件](http://www.ruanyifeng.com/blog/2019/12/github_actions.html)
 
 - csdn-emailbot：爬取 CSDN profile 信息，在 runner 服务器部署爬虫环境，并定时发送邮件，可参考 [我的博客](https://blog.csdn.net/sculpta/article/details/104142607)
 
-- csdn-spider：刷 CSDN 访问量，随机使用 45 种 user-agent，乱序、随机时间间隔爬取文章，任务完成后发送任务反馈邮件（嘘~ 🤫）
-
 ## 使用方法 ʕ •ᴥ•ʔ
 
-### 1. 首先点击右上角 🌟Star , 🔱Fork（推荐）或 clone
+### 1. 首先点击右上角 🌟Star , 🔱Fork（推荐）或 Clone
 
-`git clone https://github.com/tsundcn/actions-bot.git`
+```git
+git clone https://github.com/shink/actions-bot.git
+```
+
+> **注意：** 向 master 分支 push 时才会触发 Actions。Fork 本仓库后 clone 到本地，随便修改一点内容并 push 到 master 分支，即可触发
 
 ### 2. 修改
 
   - 对于 weather-emailbot，需修改 `main.sh` 中的城市信息（具体可参考 [chubin/wttr.in](https://github.com/chubin/wttr.in)）以及将 `weather.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址
   
   - 对于 csdn-emailbot，需修改 `main.sh` 中的 `CSDN_ID` 为你的 CSDN_ID，以及将 `csdn-emailbot.yml` 中 Send mail 步骤的 `to` 字段修改你要接收邮件的邮箱地址，另外还可以自定义更多玩法，可参考 [我的博客](https://blog.csdn.net/sculpta/article/details/104142607)
-
-  - 对于 csdn-spider，除了需要修改 `CSDN_ID` 和接收邮件地址外，由于 **GitHub Actions 限制每次任务最多运行 6 小时**，所以建议根据需求修改下 `spider.py` 中的源码（默认是 15~25 分钟访问一篇文章）
 
 ### 3. 配置 SMTP 邮件发送服务
 
